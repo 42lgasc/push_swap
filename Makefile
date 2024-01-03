@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: lgasc <marvin@42.fr>                       +#+  +:+       +#+         #
+#    By: lgasc <lgasc@student.42.fr>                +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/02/09 17:30:49 by lgasc             #+#    #+#              #
-#    Updated: 2023/12/06 21:46:59 by lgasc            ###   ########.fr        #
+#    Updated: 2023/12/20 14:05:20 by lgasc            ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -27,7 +27,7 @@ GCC_FLAGS += $(CLANG_FLAGS) -Warith-conversion
 LIBFT = libft/libft.a
 FT_PRINTF = ft_printf/libftprintf.a
 
-SOURCES = $(NAME).c gnome_sort.c
+SOURCES = $(NAME).c ft_gnome_sort.c ft_lis.c
 
 #OBJECTS = $(SOURCES:.c=.o)
 
