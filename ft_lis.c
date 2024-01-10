@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_lis.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lgasc <lgasc@student.42.fr>                +#+  +:+       +#+        */
+/*   By: lgasc <lgasc@students.42perpignan.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/20 13:58:04 by lgasc             #+#    #+#             */
-/*   Updated: 2023/12/20 22:27:44 by lgasc            ###   ########.fr       */
+/*   Updated: 2024/01/10 19:23:26 by lgasc            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -66,19 +66,21 @@ static const int	*ft_hydrate_lis(const int super[const],
 	const size_t super_length, const size_t end_lengths[const],
 	const struct s_end_predecessor end_predecessors[const])
 {
-	size_t		greatest_end;
-	int *const	lis = malloc(super_length * sizeof * lis);
-	size_t		i;
+	struct s_max_result		greatest_end;
+	int *const				lis = malloc(super_length * sizeof * lis);
+	size_t					i;
 
 	if (lis == NULL)
 		return (NULL);
-	greatest_end = ft_umaxo(end_lengths, super_length);
+	greatest_end = ft_try_zmaxo(end_lengths, super_length);
+	if (greatest_end.type == Error)
+		return ((void)(0x70D0 * greatest_end.error), NULL);
 	i = super_length;
-	while (! end_predecessors[greatest_end].e_is_first)
+	while (! end_predecessors[greatest_end.ok].e_is_first)
 	{
-		lis[--i] = super[greatest_end];
-		greatest_end = end_predecessors[greatest_end].offset;
+		lis[--i] = super[greatest_end.ok];
+		greatest_end.ok = end_predecessors[greatest_end.ok].offset;
 	}
-	lis[--i] = super[greatest_end];
+	lis[--i] = super[greatest_end.ok];
 	return (lis);
 }

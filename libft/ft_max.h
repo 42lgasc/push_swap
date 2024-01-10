@@ -1,16 +1,26 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_isspace.c                                       :+:      :+:    :+:   */
+/*   ft_max.h                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lgasc <lgasc@students.42perpignan.fr>      +#+  +:+       +#+        */
+/*   By: lgasc <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/01/10 16:32:57 by lgasc             #+#    #+#             */
-/*   Updated: 2024/01/10 17:21:53 by lgasc            ###   ########.fr       */
+/*   Created: 2024/01/10 18:40:07 by lgasc             #+#    #+#             */
+/*   Updated: 2024/01/10 19:05:32 by lgasc            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-unsigned char	ft_isspace(const char character)
+#ifndef FT_MAX_H
+# define FT_MAX_H
+
+# include <stddef.h>
+
+# include "libft.h"
+
+enum e_max_error
 {
-	return (('\t' <= character && character <= '\r') || character == ' ');
-}
+	NullPointer,
+	ZeroElements
+};
+
+#endif

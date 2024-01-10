@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: lgasc <marvin@42.fr>                       +#+  +:+       +#+         #
+#    By: lgasc <lgasc@students.42perpignan.fr>      +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/02/09 17:30:49 by lgasc             #+#    #+#              #
-#    Updated: 2023/12/06 21:42:35 by lgasc            ###   ########.fr        #
+#    Updated: 2024/01/10 17:07:02 by lgasc            ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -37,7 +37,8 @@ SOURCES = \
 	ft_substr.c ft_strjoin.c ft_strtrim.c ft_split.c \
 		ft_itoa.c \
 		ft_strmapi.c ft_striteri.c \
-		ft_putchar_fd.c ft_putstr_fd.c ft_putendl_fd.c ft_putnbr_fd.c
+		ft_putchar_fd.c ft_putstr_fd.c ft_putendl_fd.c ft_putnbr_fd.c \
+	ft_isspace.c ft_max.c
 
 OBJECTS = $(SOURCES:.c=.o)
 
