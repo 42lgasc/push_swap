@@ -6,7 +6,7 @@
 #    By: lgasc <lgasc@student.42.fr>                +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/02/09 17:30:49 by lgasc             #+#    #+#              #
-#    Updated: 2023/12/20 14:05:20 by lgasc            ###   ########.fr        #
+#    Updated: 2024/01/26 18:45:40 by lgasc            ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -18,7 +18,7 @@ NAME = push_swap
 
 # Special variables
 #CC = gcc
-#DEBUG_FLAG = -g
+export DEBUG_FLAG = #-g -O0
 CFLAGS += -Wall -Wextra -Werror $(DEBUG_FLAG)
 CLANG_FLAGS += $(CFLAGS) -g -pedantic -pedantic-errors -Wunused-result \
 	-Wconversion -Wsign-conversion -Wmissing-field-initializers
@@ -35,7 +35,7 @@ ARGUMENTS =
 
 
 # #### ### ## #  === == =  ~~ ~  -  recipes:  -  ~ ~~  = == ===  # ## ### #### #
-.PHONY: all clean fclean re bclean test norm
+.PHONY: all clean fclean re bclean test raw_test norm
 
 all: $(NAME) ;
 
@@ -61,24 +61,38 @@ bclean:
 	#$(MAKE) -C $(dir $(LIBFT))     bclean
 	$(MAKE) -C $(dir $(FT_PRINTF)) bclean
 
-test: fclean $(LIBFT) $(FT_PRINTF) #$(NAME)
-	cc        $(CLANG_FLAGS) \
+debug:
+	$(MAKE) DEBUG_FLAG+=-g3 DEBUG_FLAG+=-O0 raw_debug
+
+raw_debug: $(LIBFT) $(FT_PRINTF)
+	clang $(CLANG_FLAGS) -D TEST $(SOURCES) $(LIBFT) $(FT_PRINTF) \
+		--output $(NAME)
+	gcc   $(GCC_FLAGS) -D TEST $(SOURCES) $(LIBFT) $(FT_PRINTF)   \
+		--output $(NAME)
+	$(CC) $(CFLAGS)      -D TEST $(SOURCES) $(LIBFT) $(FT_PRINTF) \
+		--output $(NAME)
+
+test: fclean
+	$(MAKE) DEBUG_FLAG+=-g3 DEBUG_FLAG+=-O0 raw_test
+	$(MAKE) fclean
+
+raw_test: $(LIBFT) $(FT_PRINTF) #$(NAME)
+	gcc       $(GCC_FLAGS)   \
 			-D TEST $(SOURCES) $(LIBFT) $(FT_PRINTF) --output $(NAME); \
-		CC_STATUS=$$?   ; \
+		GCC_STATUS=$$?   ; \
 		clang $(CLANG_FLAGS) \
 			-D TEST $(SOURCES) $(LIBFT) $(FT_PRINTF) --output $(NAME); \
 		CLANG_STATUS=$$?; \
-		gcc   $(GCC_FLAGS)   \
+		$(CC)   $(CFLAGS)    \
 			-D TEST $(SOURCES) $(LIBFT) $(FT_PRINTF) --output $(NAME); \
-		GCC_STATUS=$$?  ; \
-		echo CC:$$CC_STATUS CLANG:$$CLANG_STATUS GCC:$$GCC_STATUS; \
+		CC_STATUS=$$?  ; \
+		echo GCC:$$GCC_STATUS CLANG:$$CLANG_STATUS CC:$$CC_STATUS; \
 		test $$CC_STATUS    -eq 0 && \
 		test $$CLANG_STATUS -eq 0 && \
 		test $$GCC_STATUS   -eq 0
 	$(MAKE) norm
 	./$(NAME) $(ARGUMENTS) \
 		; echo $$?
-	$(MAKE) fclean
 
 norm:
 	tput smso; \
@@ -99,9 +113,9 @@ norm:
 #	$(CC) $(FLAGS) -c $^ --output $@
 
 $(LIBFT):
-	$(MAKE) -C $(dir $@) DEBUG_FLAG=$(DEBUG_FLAG) $(notdir $@)
+	$(MAKE) -C $(dir $@) $$(: DEBUG_FLAG=$(DEBUG_FLAG)) $(notdir $@)
 $(FT_PRINTF):
-	$(MAKE) -C $(dir $@) DEBUG_FLAG=$(DEBUG_FLAG) $(notdir $@)
+	$(MAKE) -C $(dir $@) $$(: DEBUG_FLAG=$(DEBUG_FLAG)) $(notdir $@)
 
 # https://stackoverflow.com/a/4126617
 #.SUFFIXES:	# Delete the default suffixes

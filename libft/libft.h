@@ -6,7 +6,7 @@
 /*   By: lgasc <lgasc@students.42perpignan.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/02 15:26:44 by lgasc             #+#    #+#             */
-/*   Updated: 2024/01/10 19:20:38 by lgasc            ###   ########.fr       */
+/*   Updated: 2024/01/25 18:06:48 by lgasc            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -70,6 +70,7 @@ char						*ft_strnstr(const char *big,
 int							ft_atoi(const char *string)
 							__attribute__ ((warn_unused_result));
 
+// ///
 // > In order to implement the two following functions, you will use `malloc()`:
 
 void						*ft_calloc(size_t member_amount,
@@ -78,6 +79,7 @@ void						*ft_calloc(size_t member_amount,
 char						*ft_strdup(const char *original)
 							__attribute__ ((warn_unused_result));
 
+// ///
 // > In this second part, you must develop a set of functions that are either
 // > 	not in the libc, or that are part of it but in a different form.
 
@@ -102,6 +104,9 @@ void						ft_putstr_fd(char *string, int file_descriptor);
 void						ft_putendl_fd(char *string, int file_descriptor);
 void						ft_putnbr_fd(int integer, int file_descriptor);
 
+// ///
+// My personnal add-ons:
+
 //static char *(*const	ft_concatenate)(const char *start, const char *end)
 //	= ft_strjoin;
 //# define ft_concatenate ft_strjoin
@@ -121,8 +126,17 @@ enum e_atoi_error
 	BeyondLimits
 };
 
+// Indeed, `clang` seems to support no attribute...
 # ifndef __clang__
 #  ifdef TEST
+
+///TODO: Settle on a typedef name.
+typedef struct __attribute__ ((designated_init)) s_int_array
+{
+	size_t	length;
+	int		ints[];
+}	*t_int_array;
+typedef t_int_array	t_iarr;
 
 struct __attribute__ ((designated_init)) s_atoi_result
 {
@@ -133,10 +147,18 @@ struct __attribute__ ((designated_init)) s_atoi_result
 		enum e_atoi_error	error;
 	};
 };
-#   define S_ATOI_RESULT
+#   define LIBFT_H_ATTRIBUTES
 #  endif
 # endif
-# ifndef S_ATOI_RESULT
+# ifndef LIBFT_H_ATTRIBUTES
+
+///TODO: Settle on a typedef name.
+typedef struct s_int_array
+{
+	size_t	length;
+	int		ints[];
+}	*t_int_array;
+typedef t_int_array	t_iarr;
 
 struct s_atoi_result
 {
