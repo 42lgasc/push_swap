@@ -6,7 +6,7 @@
 /*   By: lgasc <lgasc@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/09 16:27:12 by lgasc             #+#    #+#             */
-/*   Updated: 2024/01/26 18:37:16 by lgasc            ###   ########.fr       */
+/*   Updated: 2024/01/30 18:38:32 by lgasc            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,29 +40,62 @@
 ///>Trier les piles
 int	main(const int argc, const char *const argv[const])
 {
-	const size_t			length = (size_t)argc - 1;
-	struct s_stacks			stacks = (struct s_stacks)
-			{.primary = malloc(length * sizeof * stacks.primary)};
+	size_t					length;
+	struct s_stacks			stacks;
+	struct s_parsing_result	result;
 	size_t					i;
-	struct s_atoi_result	atoi_result;
 	t_int_array				lis;
 
-	if (argc - 1 < 1)
+	(void)argv;
+	length = (size_t)argc - 1;
+	if (length < 1)
 		return (1);
-	i = 0;
-	while (i < length)
-	{
-		atoi_result = ft_try_atoi(argv[i + 1]);
-		if (atoi_result.type == Error)
-			return (free(stacks.primary), (signed)(10 + atoi_result.error));
-		stacks.primary[i++] = atoi_result.ok;
-	}
+	stacks.primary = malloc(length * sizeof * stacks.primary);
+	stacks.secondary = NULL;
+	if (stacks.primary == NULL)
+		return (2);
+	result = ft_parse(stacks.primary, &argv[1], length);
+	if (result.type == Error)
+		return (free(stacks.primary), (signed)(10 + result.error));
 	lis = ft_lis(stacks.primary, length);
 	if (lis->length == 0)
 		return (free(stacks.primary), 20);
-	i = 0, ft_printf("lis: {->length: %u, ->ints: [", lis->length);
+	i = (ft_printf("lis: {->length: %u, ->ints: [", (unsigned)lis->length), 0);
 	while (i < lis->length)
-		ft_printf("%i", lis->ints[i++]), (i < lis->length) && ft_printf(", ");
+		(ft_printf("%i", lis->ints[i]), ft_print_if(++i < lis->length, ", "));
 	ft_printf("]}\n");
-	free(stacks.primary), free(lis);
+	(free(stacks.primary), free(lis));
+}
+
+static void	ft_push_to_b(void)
+{
+}
+
+// FIXME: Better error returns.
+///@param[out] destination
+static struct s_parsing_result	ft_parse(int destination[const],
+	const char *const strings[const], const size_t amount)
+{
+	size_t					i;
+	struct s_atoi_result	atoi_result;
+
+	if (destination == NULL)
+		return ((struct s_parsing_result)
+			{.type = Error, .error = E_ATOIR_ERROR_LAST + 1});
+	if (strings == NULL)
+		return ((struct s_parsing_result)
+			{.type = Error, .error = E_ATOIR_ERROR_LAST + 2});
+	i = 0;
+	while (i < amount)
+	{
+		if (strings[i] == NULL)
+			return (
+				(struct s_parsing_result){.type = Error, .error = NullString});
+		atoi_result = ft_try_atoi(strings[i]);
+		if (atoi_result.type == Error)
+			return ((struct s_parsing_result)
+				{.type = Error, .error = atoi_result.error});
+		destination[i++] = atoi_result.ok;
+	}
+	return ((struct s_parsing_result){.type = Ok});
 }

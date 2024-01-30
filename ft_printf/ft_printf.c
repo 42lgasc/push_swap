@@ -6,7 +6,7 @@
 /*   By: lgasc <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/23 19:44:17 by lgasc             #+#    #+#             */
-/*   Updated: 2023/07/10 17:30:34 by lgasc            ###   ########.fr       */
+/*   Updated: 2024/01/30 18:45:09 by lgasc            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -139,4 +139,13 @@ ssize_t	ft_select_conversion(const unsigned char specifier,
 		*code = ft_print_character(specifier);
 	}
 	return (*code);
+}
+
+// FIXME: Better error returns.
+int	ft_print_if(const int condition, const char string[const])
+{
+	if (condition)
+		return (ft_printf("%s", string));
+	else
+		return (0);
 }

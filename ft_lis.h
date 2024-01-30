@@ -6,7 +6,7 @@
 /*   By: lgasc <lgasc@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/20 16:15:17 by lgasc             #+#    #+#             */
-/*   Updated: 2024/01/26 17:31:55 by lgasc            ###   ########.fr       */
+/*   Updated: 2024/01/30 18:28:50 by lgasc            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,15 +32,7 @@
 # ifdef TEST
 #  ifndef __clang__
 
-//struct __attribute__ ((designated_init)) s_end_predecessor
-//{
-//	enum
-//	{
-//		HasPredecessor,
-//		IsFirst
-//	}	e_is_first;
-//	size_t	previous;
-//};
+// TODO: Rename to "Khipu" or some related word.
 struct __attribute__ ((designated_init)) s_predecessions
 {
 	size_t	amount;
@@ -69,12 +61,10 @@ struct s_predecessions
 };
 # endif
 
-static void			ft_loop(const int super[], size_t super_length,
-						struct s_predecessions precedents)
-					__attribute__ ((nonnull));
-					//__attribute__ ((warn_unused_result));
-static t_int_array	ft_hydrate_lis(const int super[], size_t super_length,
-						struct s_predecessions precedents)
-					__attribute__ ((nonnull))
-					__attribute__ ((warn_unused_result));
+static unsigned char	ft_loop(const int super[], size_t super_length,
+							struct s_predecessions precedents)
+						__attribute__ ((warn_unused_result));
+static t_int_array		ft_hydrate_lis(const int super[], size_t super_length,
+							struct s_predecessions precedents)
+						__attribute__ ((warn_unused_result));
 #endif

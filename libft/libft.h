@@ -6,7 +6,7 @@
 /*   By: lgasc <lgasc@students.42perpignan.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/02 15:26:44 by lgasc             #+#    #+#             */
-/*   Updated: 2024/01/25 18:06:48 by lgasc            ###   ########.fr       */
+/*   Updated: 2024/01/30 18:33:39 by lgasc            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -125,6 +125,7 @@ enum e_atoi_error
 	NonNumeric,
 	BeyondLimits
 };
+# define E_ATOIR_ERROR_LAST BeyondLimits
 
 // Indeed, `clang` seems to support no attribute...
 # ifndef __clang__
