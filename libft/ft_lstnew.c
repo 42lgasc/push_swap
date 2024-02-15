@@ -6,27 +6,36 @@
 /*   By: lgasc <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/14 12:45:04 by lgasc             #+#    #+#             */
-/*   Updated: 2023/02/16 18:49:40 by lgasc            ###   ########.fr       */
+/*   Updated: 2024/02/13 15:21:39 by lgasc            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-/** Allocates (with malloc(3)) and returns a new node.
- * 	 The field `content` is initialized with the value of the
- * 	parameter `content`. The field `next` is initialized to `NULL`.
- *
- * @param content The content to create the node with.
- * @return The new node.
- * @remark External function: `malloc`.
- */
-t_list	*ft_lstnew(void *content)
+///Allocate (with `malloc``(3)`) and return a new node.
+///The `datum` field is initialized with the value of the
+///	`datum` parameter. The field `next` is initialized to `NULL`.
+///@param datum The datum to create the node with
+///@return A new node
+///@remark External function: `malloc`
+t_node	*ft_lstnew(void *const datum)
 {
-	struct s_list	*node;
+	t_node *const	node = malloc(sizeof * node);
 
-	node = ft_calloc(1, sizeof * node);
-	if (! node)
+	if (node == NULL)
 		return (NULL);
-	node->content = content;
+	node->datum = datum;
+	node->next = NULL;
+	return (node);
+}
+
+t_int_node	*ft_lstnew_int(const int datum)
+{
+	t_int_node *const	node = malloc(sizeof * node);
+
+	if (node == NULL)
+		return (NULL);
+	node->datum = datum;
+	node->next = NULL;
 	return (node);
 }

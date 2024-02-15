@@ -6,23 +6,30 @@
 /*   By: lgasc <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/14 16:07:05 by lgasc             #+#    #+#             */
-/*   Updated: 2023/06/29 19:09:44 by lgasc            ###   ########.fr       */
+/*   Updated: 2024/02/14 13:15:27 by lgasc            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-/** Adds the `new` node at the end of the `list`.
- * 
- * @param list The address of a pointer to the first link of a list.
- * @param new The address of the node to be added to the `list`.
- */
-void	ft_lstadd_back(t_list **list, t_list *new)
+///Add a `node` at the end of the `list`
+
+///@param list The address of the head pointer of the list
+///@param node The address of a node to be added
+
+///@remark The address of the head pointer is assumed to be nonnull.
+void	ft_lstadd_back(t_list *const list, t_node *const node)
 {
-	if (! list)
-		return ;
-	if (! *list)
-		*list = new;
+	if (*list == NULL)
+		*list = node;
 	else
-		ft_lstlast(*list)->next = new;
+		ft_lstlast(*list)->next = node;
+}
+
+void	ft_lstadd_back_int(t_int_list *const list, t_int_node *const node)
+{
+	if (*list == NULL)
+		*list = node;
+	else
+		ft_lstlast_int(*list)->next = node;
 }

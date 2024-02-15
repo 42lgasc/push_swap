@@ -1,26 +1,35 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_max.h                                           :+:      :+:    :+:   */
+/*   constants.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: lgasc <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/01/10 18:40:07 by lgasc             #+#    #+#             */
-/*   Updated: 2024/01/10 19:05:32 by lgasc            ###   ########.fr       */
+/*   Created: 2024/02/09 14:39:33 by lgasc             #+#    #+#             */
+/*   Updated: 2024/02/14 17:47:21 by lgasc            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef FT_MAX_H
-# define FT_MAX_H
+#ifndef CONSTANTS_H
+# define CONSTANTS_H
 
-# include <stddef.h>
+# ifdef TODO
 
-# include "libft.h"
+"Whomst defined it already?!": TODO;
+# else
+#  define TODO 0x70D0
+# endif
 
-enum e_max_error
+enum e_result_type
 {
-	NullPointer,
-	ZeroElements
+	Ok = 0,
+	Error = 1
+};
+
+enum e_option_type
+{
+	None,
+	Some
 };
 
 #endif

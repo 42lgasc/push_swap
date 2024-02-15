@@ -6,26 +6,20 @@
 /*   By: lgasc <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/15 13:44:41 by lgasc             #+#    #+#             */
-/*   Updated: 2023/02/15 14:02:31 by lgasc            ###   ########.fr       */
+/*   Updated: 2024/02/09 21:06:12 by lgasc            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-/** Iterates the `list` and applies the `function` on the content of each node.
- * @param list The address to a pointer to a node.
- * @param function The address of the function used to iterate on the `list`.
- */
-void	ft_lstiter(t_list *list, void (*function)(void *))
+///Iterate the `list` and applie the `action` on the `datum` of each node.
+///@param list The head pointer of the list
+///@param action The address of the function
+void	ft_lstiter(t_list list, void (*action)(const void *const datum))
 {
-	struct s_list	*node;
+	t_node	*node;
 
-	if (! function)
-		return ;
 	node = list;
-	while (node)
-	{
-		function(node->content);
-		node = node->next;
-	}
+	while (node != NULL)
+		(action(node->datum), node = node->next);
 }

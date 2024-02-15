@@ -6,7 +6,7 @@
 /*   By: lgasc <lgasc@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/20 16:15:17 by lgasc             #+#    #+#             */
-/*   Updated: 2024/01/30 18:28:50 by lgasc            ###   ########.fr       */
+/*   Updated: 2024/02/13 14:44:26 by lgasc            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,6 +23,13 @@
 #  include "ft_printf/ft_printf.h"
 # endif
 
+t_int_array		ft_lis_circular(t_int_list list)
+				__attribute__ ((nonnull))
+				__attribute__ ((warn_unused_result));
+//t_int_array		ft_lis(t_int_list list)
+//				__attribute__ ((nonnull))
+//				__attribute__ ((warn_unused_result));
+
 //enum e_firstness
 //{
 //	HasPrecedent,
@@ -33,12 +40,16 @@
 #  ifndef __clang__
 
 // TODO: Rename to "Khipu" or some related word.
-struct __attribute__ ((designated_init)) s_predecessions
+///`.ranks`: array of the rank of each element
+///	(0 is base, 1 is after 0, 2 is after 1, etc etc)
+///`.knots`: array of the position of the precedent
+///	defined for each element of nonzero rank
+typedef struct __attribute__ ((designated_init))
 {
 	size_t	amount;
 	size_t	*ranks;
-	size_t	*predecessors;
-};
+	size_t	*knots;
+}	t_khipu;
 #   define FT_LIS_H_ATTRIBUTES
 #  endif
 # endif
@@ -53,18 +64,12 @@ struct __attribute__ ((designated_init)) s_predecessions
 //	}	e_is_first;
 //	size_t	previous;
 //};
-struct s_predecessions
+typedef struct
 {
 	size_t	amount;
 	size_t	*ranks;
-	size_t	*predecessors;
-};
+	size_t	*knots;
+}
+	t_khipu;
 # endif
-
-static unsigned char	ft_loop(const int super[], size_t super_length,
-							struct s_predecessions precedents)
-						__attribute__ ((warn_unused_result));
-static t_int_array		ft_hydrate_lis(const int super[], size_t super_length,
-							struct s_predecessions precedents)
-						__attribute__ ((warn_unused_result));
 #endif

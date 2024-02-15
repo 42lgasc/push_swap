@@ -6,37 +6,46 @@
 /*   By: lgasc <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/15 12:28:07 by lgasc             #+#    #+#             */
-/*   Updated: 2023/02/17 11:39:25 by lgasc            ###   ########.fr       */
+/*   Updated: 2024/02/13 10:19:03 by lgasc            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-/** Deletes and frees the given node and every successor of that node, using
- * 	the `deleter` function and free(3).
- * 	Finally, the pointer to the `list` must be set to `NULL`.
- * 
- * @param node The address of a pointer to a node
- * 
- * @param deleter The address of the function
- * 	used to delete the content of the `node`
- * 
- * @remark External function: `free`.
- */
-void	ft_lstclear(t_list **list, void (*deleter)(void *))
+///> Delete and free the given node and every successor of
+///>  that node, using the `deleter` function and `free``(3)`.
+///> Finally, the head pointer of the `list` must be set to `NULL`.
+///@param list The address of the head pointer of the list
+///@param deleter The address of a function which frees the `node.datum`
+///@remark External function: `free`
+void	ft_lstclear(t_list *const list, void deleter(const void *const))
 {
-	t_list	*link;
-	t_list	*next_link;
+	t_node	*node;
+	t_node	*next_node;
 
-	if ((! list) || (! deleter))
-		return ;
-	link = *list;
-	while (link)
+	node = *list;
+	while (node != NULL)
 	{
-		deleter(link->content);
-		next_link = link->next;
-		free(link);
-		link = next_link;
+		deleter(node->datum);
+		next_node = node->next;
+		free(node);
+		node = next_node;
+	}
+	*list = NULL;
+}
+
+void	ft_lstclear_int(t_int_list *const list)
+{
+	t_int_node	*node;
+	t_int_node	*next_node;
+
+	node = *list;
+	while (node != NULL)
+	{
+		node->datum = 0xDEADBEEF;
+		next_node = node->next;
+		free(node);
+		node = next_node;
 	}
 	*list = NULL;
 }

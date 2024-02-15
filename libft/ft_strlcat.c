@@ -6,7 +6,7 @@
 /*   By: lgasc <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/02 16:09:25 by lgasc             #+#    #+#             */
-/*   Updated: 2023/10/24 13:03:08 by lgasc            ###   ########.fr       */
+/*   Updated: 2024/01/10 17:20:34 by lgasc            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,6 @@
 size_t	ft_strlcat(char *destination, const char *source, size_t size)
 {
 	size_t		old_destination_size;
-	const char	*concatenation_point;
 
 	if ((! source) || (! source))
 		return (0);
@@ -28,14 +27,12 @@ size_t	ft_strlcat(char *destination, const char *source, size_t size)
 		return (size + ft_strlen(source));
 	old_destination_size = ft_strlen(destination);
 	if (ft_strlen(source) <= size - 1 - old_destination_size)
-		concatenation_point
-			= ft_memmove(&destination[old_destination_size], source,
-				ft_strlen(source) + 1);
+		ft_memmove(
+			&destination[old_destination_size], source, ft_strlen(source) + 1);
 	else
 	{
-		concatenation_point
-			= ft_memmove(&destination[old_destination_size], source,
-				size - old_destination_size - 1);
+		ft_memmove(&destination[old_destination_size],
+			source, size - old_destination_size - 1);
 		destination[size -1] = '\0';
 	}
 	return (old_destination_size + ft_strlen(source));

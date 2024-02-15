@@ -6,28 +6,28 @@
 /*   By: lgasc <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/14 16:35:49 by lgasc             #+#    #+#             */
-/*   Updated: 2023/02/21 17:58:11 by lgasc            ###   ########.fr       */
+/*   Updated: 2024/02/12 15:58:04 by lgasc            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-/** Takes as a parameter a node and frees the memory of the node’s content using
- * 	the `deleter` function given as a parameter and free the node.
- * 	The memory of `next` must not be freed.
- * 
- * @param node The node to free.
- * @param deleter The addres of the function used to delete the `content`.
- * @remark External function: `free`.
- */
-void	ft_lstdelone(t_list *node, void (*deleter)(void *))
-{
-	struct s_list	*next_node;
+///> Take as a parameter a `node` and free the memory of the `node.datum`
+///> using the `deleter` function given as a parameter and free the `node`.
+///> The memory of `next` must not be freed.
 
-	if ((! node) || (! deleter))
-		return ;
-	deleter(node->content);
-	next_node = node->next;
-	free(node);
-	node = next_node;
+///# Nah. I won't.
+
+///@param node The address of a pointer to the node to free
+///@param deleter The addres of the function used to delete the `node.datum`
+
+///@remark External function: `free`.
+void	ft_lstdelone(
+	t_node **const node, void (*const deleter)(const void *const))
+{
+	t_node *const	next_node = (**node).next;
+
+	deleter((**node).datum);
+	free(*node);
+	*node = next_node;
 }

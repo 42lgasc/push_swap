@@ -6,7 +6,7 @@
 #    By: lgasc <lgasc@student.42.fr>                +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/02/09 17:30:49 by lgasc             #+#    #+#              #
-#    Updated: 2024/01/26 18:45:40 by lgasc            ###   ########.fr        #
+#    Updated: 2024/02/14 20:36:12 by lgasc            ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -19,7 +19,7 @@ NAME = push_swap
 # Special variables
 #CC = gcc
 export DEBUG_FLAG = #-g -O0
-CFLAGS += -Wall -Wextra -Werror $(DEBUG_FLAG)
+CFLAGS += -Wall -Wextra -Werror $(DEBUG_FLAG) -fpie#-fPIC#-fPIE
 CLANG_FLAGS += $(CFLAGS) -g -pedantic -pedantic-errors -Wunused-result \
 	-Wconversion -Wsign-conversion -Wmissing-field-initializers
 GCC_FLAGS += $(CLANG_FLAGS) -Warith-conversion
@@ -27,12 +27,12 @@ GCC_FLAGS += $(CLANG_FLAGS) -Warith-conversion
 LIBFT = libft/libft.a
 FT_PRINTF = ft_printf/libftprintf.a
 
-SOURCES = $(NAME).c ft_gnome_sort.c ft_lis.c
+SOURCES = $(NAME).c stacks.c ft_swap_push.c ft_raise.c ft_refurb.c \
+	ft_gnome_sort.c ft_lis.c
 
 #OBJECTS = $(SOURCES:.c=.o)
 
 ARGUMENTS = 
-
 
 # #### ### ## #  === == =  ~~ ~  -  recipes:  -  ~ ~~  = == ===  # ## ### #### #
 .PHONY: all clean fclean re bclean test raw_test norm
@@ -64,33 +64,41 @@ bclean:
 debug:
 	$(MAKE) DEBUG_FLAG+=-g3 DEBUG_FLAG+=-O0 raw_debug
 
-raw_debug: $(LIBFT) $(FT_PRINTF)
-	clang $(CLANG_FLAGS) -D TEST $(SOURCES) $(LIBFT) $(FT_PRINTF) \
-		--output $(NAME)
-	gcc   $(GCC_FLAGS) -D TEST $(SOURCES) $(LIBFT) $(FT_PRINTF)   \
-		--output $(NAME)
-	$(CC) $(CFLAGS)      -D TEST $(SOURCES) $(LIBFT) $(FT_PRINTF) \
-		--output $(NAME)
+raw_debug: $(SOURCES) $(LIBFT) $(FT_PRINTF)
+	- clang $(CLANG_FLAGS) -D TEST \
+		$(SOURCES) $(LIBFT) $(FT_PRINTF) --output $(NAME)
+	  gcc     $(GCC_FLAGS) -D TEST \
+		$(SOURCES) $(LIBFT) $(FT_PRINTF) --output $(NAME)
+	  $(CC)      $(CFLAGS) -D TEST \
+		$(SOURCES) $(LIBFT) $(FT_PRINTF) --output $(NAME)
 
 test: fclean
-	$(MAKE) DEBUG_FLAG+=-g3 DEBUG_FLAG+=-O0 raw_test
+	$(MAKE) CFLAGS+='$(CFLAGS)' CFLAGS+=-g3 CFLAGS+=-O0 CFLAGS+='-D TEST' \
+		raw_test
 	$(MAKE) fclean
 
-raw_test: $(LIBFT) $(FT_PRINTF) #$(NAME)
-	gcc       $(GCC_FLAGS)   \
+raw_test: $(SOURCES) $(LIBFT) $(FT_PRINTF) #$(NAME)
+	$(CC)          $(CFLAGS) \
 			-D TEST $(SOURCES) $(LIBFT) $(FT_PRINTF) --output $(NAME); \
-		GCC_STATUS=$$?   ; \
+		CC_STATUS=$$?   ; \
 		clang $(CLANG_FLAGS) \
 			-D TEST $(SOURCES) $(LIBFT) $(FT_PRINTF) --output $(NAME); \
 		CLANG_STATUS=$$?; \
-		$(CC)   $(CFLAGS)    \
+		gcc     $(GCC_FLAGS) \
 			-D TEST $(SOURCES) $(LIBFT) $(FT_PRINTF) --output $(NAME); \
-		CC_STATUS=$$?  ; \
-		echo GCC:$$GCC_STATUS CLANG:$$CLANG_STATUS CC:$$CC_STATUS; \
+		GCC_STATUS=$$?  ; \
+		echo CC:$$CC_STATUS CLANG:$$CLANG_STATUS GCC:$$GCC_STATUS; \
 		test $$CC_STATUS    -eq 0 && \
 		test $$CLANG_STATUS -eq 0 && \
 		test $$GCC_STATUS   -eq 0
+	  tput smso; tput setaf 1; \
+		grep -w FIXME *.c *.h $$(: */*.c */*.h); \
+		test $$? -eq 1; CODE=$$?;                tput sgr0; exit $$CODE
 	$(MAKE) norm
+	- tput smso; tput setaf 3; \
+		grep -w XXX   *.c *.h $$(: */*.c */*.h); tput sgr0
+	- tput smso; tput setaf 2; \
+		grep -w TODO  *.c *.h $$(: */*.c */*.h); tput sgr0
 	./$(NAME) $(ARGUMENTS) \
 		; echo $$?
 
@@ -110,10 +118,10 @@ norm:
 
 # Implicit
 #$(OBJECTS)%: $(%:.o=.c)
-#	$(CC) $(FLAGS) -c $^ --output $@
+#	$(CC) $(CFLAGS) -c $^ --output $@
 
 $(LIBFT):
-	$(MAKE) -C $(dir $@) $$(: DEBUG_FLAG=$(DEBUG_FLAG)) $(notdir $@)
+	$(MAKE) -C $(dir $@) $$(: DEBUG_FLAG=$(DEBUG_FLAG)) bonus #$(notdir $@)
 $(FT_PRINTF):
 	$(MAKE) -C $(dir $@) $$(: DEBUG_FLAG=$(DEBUG_FLAG)) $(notdir $@)
 

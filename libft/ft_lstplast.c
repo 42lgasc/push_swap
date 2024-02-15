@@ -1,40 +1,41 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_lstlast.c                                       :+:      :+:    :+:   */
+/*   ft_lstplast.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: lgasc <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/02/14 15:52:21 by lgasc             #+#    #+#             */
-/*   Updated: 2024/02/14 13:15:12 by lgasc            ###   ########.fr       */
+/*   Created: 2024/02/06 11:35:34 by lgasc             #+#    #+#             */
+/*   Updated: 2024/02/09 21:04:38 by lgasc            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libft.h"
+#include <unistd.h>
 
-///@return A pointer to the last node of a list, if any
+#include "bonus.h"
 
-///@param list The beginning of the list.
-t_node	*ft_lstlast(const t_list list)
+///@returns A pointer to the previous-to-last node,
+///	only if the `list` has more than one element.
+t_node	*ft_lstplast(const t_list list)
 {
 	t_node	*node;
 
-	if (list == NULL)
-		return (NULL);
 	node = list;
-	while (node->next != NULL)
+	if (node == NULL || node->next == NULL)
+		return (NULL);
+	while (node->next->next != NULL)
 		node = node->next;
 	return (node);
 }
 
-t_int_list	ft_lstlast_int(const t_int_list list)
+t_int_node	*ft_lstplast_int(const t_int_list list)
 {
 	t_int_node	*node;
 
-	if (list == NULL)
-		return (NULL);
 	node = list;
-	while (node->next != NULL)
+	if (node->next == NULL)
+		return (NULL);
+	while (node->next->next != NULL)
 		node = node->next;
 	return (node);
 }

@@ -6,64 +6,56 @@
 /*   By: lgasc <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/15 14:59:30 by lgasc             #+#    #+#             */
-/*   Updated: 2023/02/21 19:07:05 by lgasc            ###   ########.fr       */
+/*   Updated: 2024/02/09 18:51:38 by lgasc            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-static t_list	*new_list_skeleton(const size_t size);
-static void		hydrate_list(
-					const t_list *const source,
-					void *(*const mapper)(void *),
-					t_list *const destination);
+static t_list	map_skeleton(const size_t size);
+static void		hydrate_map(const t_list map, const t_list source,
+					void *(*const mapper)(const void *const datum));
 
-/** Iterates the `original` list and applies the `function` on the content of
- * 	each node, and creates a new `map` list resulting of the successive
- * 	applications of the `mapper` function.
- * The `deleter` function is used to delete the content of a node if needed.
- * 
- * @param original The address of a pointer to a node.
- * @param mapper The address of a function used to
- * 	iterate on the `original` list.
- * @param deleter The address of a function used to
- * 	delete the `content` of a node if needed.
- * 
- * @return The new `map` list. `NULL` if the allocation fails.
- * 
- * @remark External functions: `malloc`, `free`.
- * @remark This function assumes that `NULL` being returned by the `mapper`
- * 	function is just a normal (valid) value, and not some kind of error code.
- * 
- * deleter?
- * I barely know her!
- * DEL-EAT DEEZ 
- */
-t_list	*ft_lstmap(
-	t_list *original, void *(*mapper)(void *), void (*deleter)(void *))
+///Iterate the `list` and call the `mapper` on the `datum` of each node,
+/// and create a new list from the results of the calls to the `mapper`.
+///The `deleter` function is used to delete the datum of a node if needed.
+
+///@param list The head pointer of the original list
+///@param mapper The address of a function used to map
+///@param deleter The address of a function which can free a `node.datum`
+
+///@return A new list, or `NULL` if the allocation fails.
+
+///@remark External functions: `malloc`, `free`.
+///@remark This function assumes that `NULL` being returned by the `mapper`
+///	function is just a normal (valid) value, and not some kind of error code.
+
+///`deleter`?
+///I barely know her!
+///DEL-EAT DEEZ
+t_list	ft_lstmap(const t_list list, void *(*mapper)(const void *const datum),
+	void (*const deleter)(const void *const datum))
 {
-	t_list	*map;
+	const t_list	map = map_skeleton(ft_lstsize(list));
 
-	if ((! original) || (! mapper) || (! deleter))
+	(void) deleter;
+	if (map == NULL)
 		return (NULL);
-	map = new_list_skeleton(ft_lstsize(original));
-	if (! map)
-		return (NULL);
-	hydrate_list(original, mapper, map);
+	hydrate_map(map, list, mapper);
 	return (map);
 }
 
-static void		noop(void *x);
+static void		noop(const void *const x);
 
-static t_list	*new_list_skeleton(const size_t size)
+static t_list	map_skeleton(const size_t size)
 {
-	unsigned int	i;
-	t_list			*skeleton;
-	struct s_list	*node;
+	size_t	i;
+	t_list	skeleton;
+	t_node	*node;
 
 	i = 0;
 	skeleton = NULL;
-	while (i < size)
+	while (i++ < size)
 	{
 		node = ft_lstnew(NULL);
 		if (node)
@@ -73,34 +65,31 @@ static t_list	*new_list_skeleton(const size_t size)
 			ft_lstclear(&skeleton, noop);
 			return (NULL);
 		}
-		i++;
 	}
 	return (skeleton);
 }
 
-static void	noop(void *x)
+static void	noop(const void *const x)
 {
 	if (x)
 		return ;
 	return ;
 }
 
-static void	hydrate_list(
-				const t_list *const source,
-				void *(*const mapper)(void *),
-				t_list *const destination)
+static void	hydrate_map(const t_list map, const t_list source,
+	void *(*const mapper)(const void *const datum))
 {
-	struct s_list		*destination_link;
-	const struct s_list	*source_link;
+	t_node			*map_node;
+	const t_node	*source_node;
 
-	if ((! source) || (! mapper) || (! destination))
+	if ((! source) || (! mapper) || (! map))
 		return ;
-	destination_link = destination;
-	source_link = source;
-	while (destination_link)
+	map_node = map;
+	source_node = source;
+	while (map_node != NULL)
 	{
-		destination_link->content = mapper(source_link->content);
-		destination_link = destination_link->next;
-		source_link = source_link->next;
+		map_node->datum = mapper(source_node->datum);
+		map_node = map_node->next;
+		source_node = source_node->next;
 	}
 }

@@ -6,16 +6,17 @@
 /*   By: lgasc <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/23 19:44:17 by lgasc             #+#    #+#             */
-/*   Updated: 2024/01/30 18:45:09 by lgasc            ###   ########.fr       */
+/*   Updated: 2024/02/14 17:37:10 by lgasc            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "ft_printf.h"
+#include "libft/types.h"
+
+//#include "ft_printf.h"
+#include "ft_printf_conversion.h"
+#include "ft_printf_utils.h"
 
 // TODO: Support these conversions: cspdiuxX%
-
-// FIXME: This definnition is not Norm-compliant :[
-//#define MUST_USE_RESULT __attribute__ ((warn_unused_result))
 
 extern void		*malloc(const size_t size) __attribute__ ((warn_unused_result));
 extern void		free(void *const pointer);
@@ -37,7 +38,7 @@ ssize_t			ft_printf_one(unsigned char *const in_percent,
 /// @remark External functions: `malloc`, `free`, and `write`;
 /// 	External macro functions:
 /// 		`va_start()`, `va_arg`, `va_copy`, and `va_end`.
-__attribute__ ((warn_unused_result))
+__attribute__ ((format (printf, 1, 2))) __attribute__ ((warn_unused_result))
 int	ft_printf(const char *format, ...)
 {
 	va_list			argument_pointer;
@@ -66,18 +67,6 @@ int	ft_printf(const char *format, ...)
 
 ////////
 
-ssize_t			ft_select_conversion(const unsigned char specifier,
-					va_list *const argument_pointer, ssize_t *const code,
-					ssize_t *const length) __attribute__ ((warn_unused_result));
-//ssize_t			ft_print_small_hexadecimal(const unsigned int number)
-//				__attribute__ ((warn_unused_result));
-//ssize_t			ft_print_capital_hexadecimal(const unsigned int number)
-//				__attribute__ ((warn_unused_result));
-//ssize_t			ft_print_percent_sign(void)
-//				__attribute__ ((warn_unused_result));
-ssize_t			ft_handler(const ssize_t code, ssize_t *const length)
-				__attribute__ ((warn_unused_result));
-
 ssize_t	ft_printf_one(unsigned char *const in_percent,
 			const unsigned char character, va_list *const argument_pointer,
 			ssize_t *const length)
@@ -97,20 +86,6 @@ ssize_t	ft_printf_one(unsigned char *const in_percent,
 }
 
 ////////
-
-ssize_t			ft_print_character(const unsigned char character)
-				__attribute__ ((warn_unused_result));
-ssize_t			ft_print_string(const char *const string)
-				__attribute__ ((warn_unused_result));
-ssize_t			ft_print_pointer(const void *const pointer)
-				__attribute__ ((warn_unused_result));
-ssize_t			ft_print_integer(const int number)
-				__attribute__ ((warn_unused_result));
-ssize_t			ft_print_unsigned_integer(const unsigned int number)
-				__attribute__ ((warn_unused_result));
-ssize_t			ft_print_hexadecimal(const uintptr_t number,
-					const unsigned char lowercase)
-				__attribute__ ((warn_unused_result));
 
 ssize_t	ft_select_conversion(const unsigned char specifier,
 			va_list *const argument_pointer, ssize_t *const code,
@@ -141,11 +116,15 @@ ssize_t	ft_select_conversion(const unsigned char specifier,
 	return (*code);
 }
 
-// FIXME: Better error returns.
-int	ft_print_if(const int condition, const char string[const])
+struct s_int_option	ft_print_if(const int condition, const char string[const])
 {
 	if (condition)
-		return (ft_printf("%s", string));
+		return ((struct s_int_option)
+			{.type = Some, .value = ft_printf("%s", string)});
 	else
-		return (0);
+		return ((struct s_int_option){.type = None});
+}
+
+void	ft_print_array(void)
+{
 }

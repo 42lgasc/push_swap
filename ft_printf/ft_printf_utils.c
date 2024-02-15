@@ -6,9 +6,13 @@
 /*   By: lgasc <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/10 16:41:57 by lgasc             #+#    #+#             */
-/*   Updated: 2023/07/10 17:28:04 by lgasc            ###   ########.fr       */
+/*   Updated: 2024/02/14 18:01:49 by lgasc            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
+
+#include <stdint.h>
+#include <sys/types.h>
+#include <unistd.h>
 
 #include "ft_printf_utils.h"
 

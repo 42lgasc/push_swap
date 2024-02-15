@@ -6,7 +6,7 @@
 #    By: lgasc <marvin@42.fr>                       +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/02/09 17:30:49 by lgasc             #+#    #+#              #
-#    Updated: 2023/12/06 21:44:08 by lgasc            ###   ########.fr        #
+#    Updated: 2024/02/14 20:36:35 by lgasc            ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -18,7 +18,7 @@ NAME = libftprintf.a
 
 # Special variables
 #CC = gcc
-CFLAGS += -Wall -Wextra -Werror -fpie
+CFLAGS += -Wall -Wextra -Werror -fpie#-fPIC
 CLANG_FLAGS += $(CFLAGS) -g -pedantic -pedantic-errors -Wunused-result \
 	-Wconversion -Wno-format-extra-args -Wno-format-invalid-specifier \
 	-Wno-format -Wno-format-pedantic
@@ -26,7 +26,7 @@ GCC_FLAGS += $(CLANG_FLAGS) -Warith-conversion
 
 LIBFT = libft/libft.a
 
-SOURCES = ft_printf.c ft_printf_conversion.c ft_printf_utils.c
+SOURCES = ft_printf.c ft_printf_conversion.c ft_printf_utils.c print_misc.c
 
 OBJECTS = $(SOURCES:.c=.o)
 
@@ -55,26 +55,33 @@ bclean:
 
 test: #$(NAME)
 	   $(MAKE) fclean
-	-  $(MAKE) CC=gcc   CFLAGS='  $(GCC_FLAGS)'        $(NAME)                 \
-	&&            clang         $(CLANG_FLAGS) _main.c $(NAME) --output _a.out
-	-  $(MAKE) CC=clang CFLAGS='$(CLANG_FLAGS)'        $(NAME)                 \
-	&&            gcc             $(GCC_FLAGS) _main.c $(NAME) --output _a.out
-	-  $(MAKE) norm
-	-  $(MAKE) CC=clang CFLAGS='$(CLANG_FLAGS)'        $(NAME)                 \
-	&&            clang         $(CLANG_FLAGS) _main.c $(NAME) --output _a.out \
-	&&                                                                ./_a.out
-	   $(MAKE) CC=gcc   CFLAGS='  $(GCC_FLAGS)'        $(NAME)                 \
-	&&            gcc             $(GCC_FLAGS) _main.c $(NAME) --output _a.out \
-	&&                                                                ./_a.out
+	-  $(MAKE) CC=gcc   CFLAGS+='  $(GCC_FLAGS)'        $(NAME) \
+		&&        clang          $(CLANG_FLAGS) _main.c $(NAME) --output _a.out
+	-  $(MAKE) CC=clang CFLAGS+='$(CLANG_FLAGS)'        $(NAME) \
+		&&        gcc              $(GCC_FLAGS) _main.c $(NAME) --output _a.out
+	-  $(MAKE) CC=clang CFLAGS+='$(CLANG_FLAGS)'        $(NAME) \
+	&&            clang          $(CLANG_FLAGS) _main.c $(NAME) --output _a.out\
+	&&                                                                 ./_a.out
+	   $(MAKE) CC=gcc   CFLAGS+='  $(GCC_FLAGS)'        $(NAME) \
+	&&            gcc              $(GCC_FLAGS) _main.c $(NAME) --output _a.out\
+	&&                                                                 ./_a.out
 	#rm                                                                  _a.out
 	   $(MAKE) fclean
+	  tput smso; tput setaf 1; \
+		  grep -w FIXME *.c *.h $$(: */*.c */*.h); \
+		  test $$? -eq 1; CODE=$$?;                tput sgr0; code $$CODE
+	- $(MAKE) norm
+	- tput smso; tput setaf 3; \
+		  grep -w XXX   *.c *.h $$(: */*.c */*.h); tput sgr0
+	- tput smso; tput setaf 2; \
+		  grep -w TODO  *.c *.h $$(: */*.c */*.h); tput sgr0
 
 norm:
-	printf '\e[45m' ; norminette *.h *.c ; printf '\e[49m'
+	tput setab 5; norminette *.h *.c ; tput sgr0
 
 # Implicit
 #$(OBJECTS)%: $(%:.o=.c)
-#	$(CC) $(FLAGS) -c $^ --output $@
+#	$(CC) $(CFLAGS) -c $^ --output $@
 
 $(LIBFT):
 	$(MAKE) -C $(dir $@) $(notdir $@)

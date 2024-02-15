@@ -1,27 +1,28 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_memset.c                                        :+:      :+:    :+:   */
+/*   ft_raise.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: lgasc <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/02/01 16:37:56 by lgasc             #+#    #+#             */
-/*   Updated: 2024/02/07 14:06:41 by lgasc            ###   ########.fr       */
+/*   Created: 2024/01/31 15:29:37 by lgasc             #+#    #+#             */
+/*   Updated: 2024/02/13 12:03:21 by lgasc            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libft.h"
+#include "libft/libft.h"
 
-///@remark This function aims to replicate the `libc` function `memset`.
-// Stop changing the argument type to `char`!
-void	*ft_memset(void *start, int character, size_t size)
+#include "stacks.h"
+
+void	ft_raise_a(struct s_stacks *const stacks)
 {
-	size_t	i;
-
-	if (! start)
-		return (start);
-	i = 0;
-	while (i < size)
-		((unsigned char *const) start)[i++] = (unsigned char) character;
-	return (start);
+	ft_putstr_fd("ra\n", 1);
+	//while (!(stacks->masks[stacks->primary_top] & Primary))
+	//{
+	//	++stacks->primary_top;
+	//	stacks->primary_top %= stacks->size;
+	//}
+	//++stacks->primary_top;
+	//stacks->primary_top %= stacks->size;
+	ft_lstrot_int(&stacks->primary);
 }

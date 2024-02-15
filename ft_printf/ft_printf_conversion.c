@@ -6,9 +6,14 @@
 /*   By: lgasc <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/10 17:29:35 by lgasc             #+#    #+#             */
-/*   Updated: 2023/07/27 17:44:55 by lgasc            ###   ########.fr       */
+/*   Updated: 2024/02/14 17:17:19 by lgasc            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
+
+#include <stddef.h>
+#include <unistd.h>
+
+#include "libft/libft.h"
 
 #include "ft_printf_conversion.h"
 
@@ -23,6 +28,7 @@ ssize_t	ft_print_string(const char *const string)
 	return (write(1, string, ft_strlen(string)));
 }
 
+// TODO: Remove allocation: inline `ft_itoa`
 ssize_t	ft_print_integer(const int number)
 {
 	char	*string;

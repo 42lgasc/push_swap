@@ -1,40 +1,49 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_lstlast.c                                       :+:      :+:    :+:   */
+/*   ft_lstget.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: lgasc <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/02/14 15:52:21 by lgasc             #+#    #+#             */
-/*   Updated: 2024/02/14 13:15:12 by lgasc            ###   ########.fr       */
+/*   Created: 2024/02/07 17:19:40 by lgasc             #+#    #+#             */
+/*   Updated: 2024/02/14 20:30:28 by lgasc            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libft.h"
+#include <stddef.h>
 
-///@return A pointer to the last node of a list, if any
+#include "bonus.h"
 
-///@param list The beginning of the list.
-t_node	*ft_lstlast(const t_list list)
+#ifdef TEST
+# include "libft.h"
+#endif
+
+///Get the node at the given `offset` in the `list`, if it exists
+///XXX: You should not need to call this function;
+///	you might be using lunk lists wrong!
+t_node	*ft_lstget(const t_list list, const size_t offset)
 {
+	size_t	i;
 	t_node	*node;
 
-	if (list == NULL)
-		return (NULL);
 	node = list;
-	while (node->next != NULL)
+	i = 0;
+	while (i < offset && node != NULL)
 		node = node->next;
 	return (node);
 }
 
-t_int_list	ft_lstlast_int(const t_int_list list)
+t_int_node	*ft_lstget_int(const t_int_list list, const size_t offset)
 {
+	size_t		i;
 	t_int_node	*node;
 
-	if (list == NULL)
-		return (NULL);
 	node = list;
-	while (node->next != NULL)
+	i = 0;
+	while (i < offset && node != NULL)
+	{
 		node = node->next;
+		++i;
+	}
 	return (node);
 }

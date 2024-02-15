@@ -1,16 +1,18 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_max.c                                           :+:      :+:    :+:   */
+/*   max.c                                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: lgasc <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/10 17:14:34 by lgasc             #+#    #+#             */
-/*   Updated: 2024/01/10 19:08:13 by lgasc            ###   ########.fr       */
+/*   Updated: 2024/02/12 17:08:24 by lgasc            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "ft_max.h"
+#include <stddef.h>
+
+#include "max.h"
 
 //unsigned	ft_umaxo()
 //{
@@ -30,19 +32,18 @@
 //}
 
 ///@returns the offset of one of the maximum values of the `array`
-struct s_max_result	ft_try_zmaxo(const size_t array[const], const size_t length)
+__attribute__ ((nonnull))
+t_max_result	ft_try_zmaxo(const size_t array[const], const size_t length)
 {
 	size_t	i;
 	size_t	maximum_offset;
 
-	if (array == NULL)
-		return ((struct s_max_result){.error = NullPointer});
 	if (length == 0)
-		return ((struct s_max_result){.error = ZeroElements});
+		return ((t_max_result){.code = NoElement});
 	i = 0;
 	maximum_offset = 0;
 	while (++i < length)
 		if (array[i] > array[maximum_offset])
 			maximum_offset = i;
-	return ((struct s_max_result){.ok = maximum_offset});
+	return ((t_max_result){.code = Max_Ok, .ok = maximum_offset});
 }

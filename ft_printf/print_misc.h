@@ -1,27 +1,20 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_memset.c                                        :+:      :+:    :+:   */
+/*   print_misc.h                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: lgasc <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/02/01 16:37:56 by lgasc             #+#    #+#             */
-/*   Updated: 2024/02/07 14:06:41 by lgasc            ###   ########.fr       */
+/*   Created: 2024/02/14 16:52:24 by lgasc             #+#    #+#             */
+/*   Updated: 2024/02/15 14:08:43 by lgasc            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libft.h"
+#ifndef PRINT_MISC_H
+# define PRINT_MISC_H
 
-///@remark This function aims to replicate the `libc` function `memset`.
-// Stop changing the argument type to `char`!
-void	*ft_memset(void *start, int character, size_t size)
-{
-	size_t	i;
+# include "libft/bonus_types.h"
 
-	if (! start)
-		return (start);
-	i = 0;
-	while (i < size)
-		((unsigned char *const) start)[i++] = (unsigned char) character;
-	return (start);
-}
+void	ft_print_int_list(t_int_list list);
+void	ft_print_array(t_int_array array) __attribute__ ((nonnull));
+#endif
