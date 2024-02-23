@@ -6,13 +6,21 @@
 /*   By: lgasc <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/10 17:14:34 by lgasc             #+#    #+#             */
-/*   Updated: 2024/02/12 17:08:24 by lgasc            ###   ########.fr       */
+/*   Updated: 2024/02/22 20:12:42 by lgasc            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <stddef.h>
 
 #include "max.h"
+
+__attribute__ ((warn_unused_result))
+size_t	ft_zmax(const size_t a, const size_t b)
+{
+	if (a > b)
+		return (a);
+	return (b);
+}
 
 //unsigned	ft_umaxo()
 //{

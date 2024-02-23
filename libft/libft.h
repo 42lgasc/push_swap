@@ -6,7 +6,7 @@
 /*   By: lgasc <lgasc@students.42perpignan.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/02 15:26:44 by lgasc             #+#    #+#             */
-/*   Updated: 2024/02/14 17:39:04 by lgasc            ###   ########.fr       */
+/*   Updated: 2024/02/22 19:40:08 by lgasc            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -122,4 +122,8 @@ typedef struct s_SIZEt_UNSIGNEDchar
 //typedef t_result_z_uc	t_res_z_uc;
 //typedef t_res_z_uc	t_reszuc;
 //typedef t_res_z_uc	t_rzuc;
+
+void			ft_swap_intptr(const int **a, const int **b);
+int				*ft_intarrint(t_int_array array, int integer);
+size_t			ft_zmin(size_t a, size_t b);
 #endif

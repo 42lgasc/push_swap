@@ -6,11 +6,11 @@
 /*   By: lgasc <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/14 16:07:05 by lgasc             #+#    #+#             */
-/*   Updated: 2024/02/14 13:15:27 by lgasc            ###   ########.fr       */
+/*   Updated: 2024/02/22 20:23:10 by lgasc            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libft.h"
+#include "bonus.h"
 
 ///Add a `node` at the end of the `list`
 
@@ -32,4 +32,13 @@ void	ft_lstadd_back_int(t_int_list *const list, t_int_node *const node)
 		*list = node;
 	else
 		ft_lstlast_int(*list)->next = node;
+}
+
+__attribute__ ((nonnull))
+void	ft_zlstadd_back(t_zlist *const list, t_znode *const node)
+{
+	if (*list == NULL)
+		*list = node;
+	else
+		ft_zlstlast(*list)->next = node;
 }

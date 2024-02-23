@@ -6,7 +6,7 @@
 /*   By: lgasc <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/15 12:28:07 by lgasc             #+#    #+#             */
-/*   Updated: 2024/02/13 10:19:03 by lgasc            ###   ########.fr       */
+/*   Updated: 2024/02/22 20:57:44 by lgasc            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,6 +43,23 @@ void	ft_lstclear_int(t_int_list *const list)
 	while (node != NULL)
 	{
 		node->datum = 0xDEADBEEF;
+		next_node = node->next;
+		free(node);
+		node = next_node;
+	}
+	*list = NULL;
+}
+
+__attribute__ ((nonnull))
+void	ft_zlstclear(t_zlist *const list)
+{
+	t_znode	*node;
+	t_znode	*next_node;
+
+	node = *list;
+	while (node != NULL)
+	{
+		node->inner = 0xDEADBEEF;
 		next_node = node->next;
 		free(node);
 		node = next_node;

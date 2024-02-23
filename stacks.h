@@ -6,7 +6,7 @@
 /*   By: lgasc <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/31 17:09:49 by lgasc             #+#    #+#             */
-/*   Updated: 2024/02/14 20:46:48 by lgasc            ###   ########.fr       */
+/*   Updated: 2024/02/15 21:41:17 by lgasc            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,7 @@
 
 # include "libft/libft.h"
 
-# include "types.h"
+# include "push_swap_types.h"
 
 void				ft_print_stacks(struct s_stacks stacks);
 

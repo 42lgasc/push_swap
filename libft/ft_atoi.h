@@ -6,7 +6,7 @@
 /*   By: lgasc <lgasc@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/06 17:46:44 by lgasc             #+#    #+#             */
-/*   Updated: 2024/02/14 17:58:55 by lgasc            ###   ########.fr       */
+/*   Updated: 2024/02/22 18:57:58 by lgasc            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,6 +23,12 @@ enum e_atoi_code
 	BeyondLimits
 };
 //# define E_ATOI_ERROR_LAST BeyondLimits
+//# define ATOI_CODE (const char *const []) \/
+//static const char *const	g_atoi_code[]
+//	= {"ok", "null string", "non-numeric string", "integer beyond limits"};
+//# define ATOI_CODE_OK "ok"
+//# define ATOI_CODE_NULL_STRING "null string"
+//# define ATOI_CODE ATOI_CODE_OK ATOI_CODE_NULL_STRING
 
 // Indeed, `clang` seems to support no attribute...
 # ifndef __clang__

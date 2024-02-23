@@ -6,7 +6,7 @@
 /*   By: lgasc <lgasc@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/20 16:15:17 by lgasc             #+#    #+#             */
-/*   Updated: 2024/02/13 14:44:26 by lgasc            ###   ########.fr       */
+/*   Updated: 2024/02/16 18:15:31 by lgasc            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,7 +44,7 @@ t_int_array		ft_lis_circular(t_int_list list)
 ///	(0 is base, 1 is after 0, 2 is after 1, etc etc)
 ///`.knots`: array of the position of the precedent
 ///	defined for each element of nonzero rank
-typedef struct __attribute__ ((designated_init))
+typedef struct __attribute__ ((designated_init)) s_khipu
 {
 	size_t	amount;
 	size_t	*ranks;
@@ -64,12 +64,11 @@ typedef struct __attribute__ ((designated_init))
 //	}	e_is_first;
 //	size_t	previous;
 //};
-typedef struct
+typedef struct s_khipu
 {
 	size_t	amount;
 	size_t	*ranks;
 	size_t	*knots;
-}
-	t_khipu;
+}	t_khipu;
 # endif
 #endif

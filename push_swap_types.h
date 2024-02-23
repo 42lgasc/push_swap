@@ -1,19 +1,20 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   types.h                                            :+:      :+:    :+:   */
+/*   push_swap_types.h                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: lgasc <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/14 20:42:46 by lgasc             #+#    #+#             */
-/*   Updated: 2024/02/14 20:54:55 by lgasc            ###   ########.fr       */
+/*   Updated: 2024/02/15 21:36:44 by lgasc            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef PUSH_SWAP_TYPES_H
 # define PUSH_SWAP_TYPES_H
 
-#include "libft/bonus_types.h"
+# include "libft/bonus_types.h"
+
 enum e_stack_mask
 {
 	Neither = 0,

@@ -6,7 +6,7 @@
 /*   By: lgasc <lgasc@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/14 22:06:10 by lgasc             #+#    #+#             */
-/*   Updated: 2024/02/15 19:57:49 by lgasc            ###   ########.fr       */
+/*   Updated: 2024/02/22 20:40:20 by lgasc            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,14 +25,14 @@
 #  include "ft_printf/ft_printf.h"
 # endif
 
-void			ft_swap_a(void);
+void			ft_swap_a(struct s_stacks *stacks);
 void			ft_swap_b(void);
 void			ft_shovel_swap(void);
 void			ft_push_to_a(struct s_stacks *stacks);
 void			ft_push_to_b(struct s_stacks *stacks);
 void			ft_raise_a(const struct s_stacks *stacks);
-void			ft_raise_b(void);
-void			ft_rake_raise(void);
+void			ft_raise_b(const struct s_stacks *stacks);
+void			ft_rake_raise(struct s_stacks *stacks);
 void			ft_refurb_a(struct s_stacks *stacks);
 void			ft_refurb_b(struct s_stacks *stacks);
 void			ft_rake_refurb(struct s_stacks *stacks);

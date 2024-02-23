@@ -6,7 +6,7 @@
 /*   By: lgasc <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/10 18:40:07 by lgasc             #+#    #+#             */
-/*   Updated: 2024/02/12 16:52:02 by lgasc            ###   ########.fr       */
+/*   Updated: 2024/02/22 20:10:57 by lgasc            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,5 +59,5 @@ size_t			ft_zmaxo(const size_t array[], size_t length)
 				__attribute__ ((warn_unused_result));
 t_max_result	ft_try_zmaxo(const size_t array[], size_t length)
 				__attribute__ ((warn_unused_result));
+size_t			ft_zmax(size_t a, size_t b);
 #endif
-

@@ -6,12 +6,12 @@
 /*   By: lgasc <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/14 17:39:23 by lgasc             #+#    #+#             */
-/*   Updated: 2024/02/14 20:53:13 by lgasc            ###   ########.fr       */
+/*   Updated: 2024/02/15 21:41:39 by lgasc            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef LIBFT_TYPES_H
-# define LIBFT_TYPES_H
+#ifndef TYPES_H
+# define TYPES_H
 
 # include <stddef.h>
 

@@ -6,7 +6,7 @@
 /*   By: lgasc <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/23 19:44:17 by lgasc             #+#    #+#             */
-/*   Updated: 2024/02/14 17:37:10 by lgasc            ###   ########.fr       */
+/*   Updated: 2024/02/22 15:05:23 by lgasc            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -123,8 +123,4 @@ struct s_int_option	ft_print_if(const int condition, const char string[const])
 			{.type = Some, .value = ft_printf("%s", string)});
 	else
 		return ((struct s_int_option){.type = None});
-}
-
-void	ft_print_array(void)
-{
 }

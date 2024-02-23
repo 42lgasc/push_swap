@@ -6,7 +6,7 @@
 #    By: lgasc <lgasc@students.42perpignan.fr>      +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/02/09 17:30:49 by lgasc             #+#    #+#              #
-#    Updated: 2024/02/14 20:37:05 by lgasc            ###   ########.fr        #
+#    Updated: 2024/02/22 19:37:28 by lgasc            ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -40,7 +40,7 @@ SOURCES = \
 		ft_itoa.c \
 		ft_strmapi.c ft_striteri.c \
 		ft_putchar_fd.c ft_putstr_fd.c ft_putendl_fd.c ft_putnbr_fd.c \
-	ft_isspace.c max.c
+	min.c max.c swap.c ft_isspace.c ft_arrint.c
 
 OBJECTS = $(SOURCES:.c=.o)
 
@@ -116,7 +116,7 @@ BONUS_SOURCES = \
 	ft_lstnew.c ft_lstadd_front.c ft_lstsize.c ft_lstlast.c \
 		ft_lstadd_back.c ft_lstdelone.c ft_lstclear.c \
 		ft_lstiter.c ft_lstmap.c \
-	ft_lstrot.c ft_lstplast.c ft_lstget.c
+	ft_lstrot.c ft_lstplast.c ft_lstget.c ft_lstclone.c ft_lstswap.c
 
 BONUS_OBJECTS = $(BONUS_SOURCES:.c=.o)
 
