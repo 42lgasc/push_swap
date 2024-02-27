@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   stacks.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lgasc <marvin@42.fr>                       +#+  +:+       +#+        */
+/*   By: lgasc <lgasc@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/31 18:25:10 by lgasc             #+#    #+#             */
-/*   Updated: 2024/02/22 21:13:11 by lgasc            ###   ########.fr       */
+/*   Updated: 2024/02/27 11:13:58 by lgasc            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,7 +25,7 @@
 
 void	ft_print_stacks(const struct s_stacks stacks)
 {
-	const t_int_node	*node;
+	const t_inode	*node;
 
 	ft_putstr_fd("stacks: { primary: [", 2);
 	node = stacks.primary;
@@ -77,7 +77,7 @@ t_int_option	ft_primary_bottom(const struct s_stacks stacks)
 	if (stacks.primary == NULL)
 		return ((t_int_option){.type = None});
 	return ((t_int_option)
-		{.type = Some, .value = ft_lstlast_int(stacks.primary)->datum});
+		{.type = Some, .value = ft_ilstlast(stacks.primary)->datum});
 }
 
 t_int_option	ft_secondary_top(const struct s_stacks stacks)
@@ -89,8 +89,8 @@ t_int_option	ft_secondary_top(const struct s_stacks stacks)
 
 t_int_option	ft_secondary_bottom(const struct s_stacks stacks)
 {
-	if (ft_lstplast_int(stacks.secondary) == NULL)
+	if (ft_ilstplast(stacks.secondary) == NULL)
 		return ((t_int_option){.type = None});
 	return ((t_int_option)
-		{.type = Some, .value = ft_lstplast_int(stacks.secondary)->datum});
+		{.type = Some, .value = ft_ilstplast(stacks.secondary)->datum});
 }

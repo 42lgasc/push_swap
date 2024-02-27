@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   libft.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lgasc <lgasc@students.42perpignan.fr>      +#+  +:+       +#+        */
+/*   By: lgasc <lgasc@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/02 15:26:44 by lgasc             #+#    #+#             */
-/*   Updated: 2024/02/22 19:40:08 by lgasc            ###   ########.fr       */
+/*   Updated: 2024/02/27 11:05:03 by lgasc            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,8 +39,7 @@ int				ft_isascii(int character) __attribute__ ((warn_unused_result));
 int				ft_isprint(int character) __attribute__ ((warn_unused_result));
 size_t			ft_strlen(const char *string)
 				__attribute__ ((warn_unused_result));
-void			*ft_memset(void *start, int character, size_t size)
-				__attribute__ ((warn_unused_result));
+void			*ft_memset(void *start, int character, size_t size);
 void			ft_bzero(void *start, size_t size);
 void			*ft_memcpy(void *destination, const void *source, size_t n)
 				__attribute__ ((warn_unused_result));

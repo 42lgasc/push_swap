@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_lis.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lgasc <lgasc@students.42perpignan.fr>      +#+  +:+       +#+        */
+/*   By: lgasc <lgasc@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/20 13:58:04 by lgasc             #+#    #+#             */
-/*   Updated: 2024/02/22 21:11:08 by lgasc            ###   ########.fr       */
+/*   Updated: 2024/02/27 11:32:04 by lgasc            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,9 +16,9 @@
 //# include "ft_printf/ft_printf.h"
 //#endif
 
-static void		ft_loop(t_khipu *khipu, t_int_list int_list)
+static void		ft_loop(t_khipu *khipu, t_ilist int_list)
 				__attribute__ ((nonnull));
-static t_iarr	ft_hydrate_lis(t_int_list int_list, t_khipu khipu)
+static t_iarr	ft_hydrate_lis(t_ilist int_list, t_khipu khipu)
 				__attribute__ ((warn_unused_result)) __attribute__ ((nonnull));
 
 #ifdef TEST
@@ -29,7 +29,7 @@ static t_iarr	ft_hydrate_lis(t_int_list int_list, t_khipu khipu)
 ///Longuest Increasing Subsequence
 		//= malloc(super_length * sizeof * end_predecessors);
 		//|| end_predecessors == NULL)
-t_int_array	ft_lis(const t_int_list int_list)
+t_int_array	ft_lis(const t_ilist int_list)
 {
 	t_khipu		khipu;
 	size_t		i;
@@ -37,7 +37,7 @@ t_int_array	ft_lis(const t_int_list int_list)
 
 	if (int_list == NULL)
 		return (NULL);
-	khipu.amount = ft_lstsize_int(int_list);
+	khipu.amount = ft_ilstsize(int_list);
 	khipu.ranks
 		= malloc(khipu.amount * sizeof * khipu.ranks);
 	khipu.knots
@@ -57,22 +57,22 @@ t_int_array	ft_lis(const t_int_list int_list)
 // 	It could be hard, or it could be easy, or it could be foolish,
 // 		anyway I am not trying today. ~~lgasc 2024-02-16T19:46
 ///TODO
-t_int_array	ft_lis_circular(const t_int_list list)
+t_int_array	ft_lis_circular(const t_ilist list)
 {
-	const t_int_node	*node;
-	t_int_list			clone;
-	t_int_array			best;
-	t_int_array			lis;
+	const t_inode	*node;
+	t_ilist			clone;
+	t_int_array		best;
+	t_int_array		lis;
 
 	node = list;
 	best = NULL;
 	while (node != NULL)
 	{
-		clone = ft_lstclone_int(list);
+		clone = ft_ilstclone(list);
 		while (clone->datum != node->datum)
-			ft_lstrot_int(&clone);
+			ft_ilstrot(&clone);
 		lis = ft_lis(clone);
-		ft_lstclear_int(&clone);
+		ft_ilstclear(&clone);
 		if (best == NULL || lis->length > best->length)
 			best = (free(best), lis);
 		else
@@ -82,12 +82,12 @@ t_int_array	ft_lis_circular(const t_int_list list)
 	return (best);
 }
 
-static void	ft_loop(t_khipu *const khipu, const t_int_list int_list)
+static void	ft_loop(t_khipu *const khipu, const t_ilist int_list)
 {
-	size_t		i;
-	size_t		j;
-	t_int_node	*p;
-	t_int_node	*q;
+	size_t	i;
+	size_t	j;
+	t_inode	*p;
+	t_inode	*q;
 
 	i = 0;
 	p = int_list;
@@ -112,7 +112,7 @@ static void	ft_loop(t_khipu *const khipu, const t_int_list int_list)
 ///TODO: Better error returns
 	//	return ((struct s_int_array){.length = 0});
 static t_int_array	ft_hydrate_lis(
-	const t_int_list int_list, const t_khipu khipu)
+	const t_ilist int_list, const t_khipu khipu)
 {
 	t_max_result	high_tip;
 	t_int_array		lis;
@@ -129,10 +129,10 @@ static t_int_array	ft_hydrate_lis(
 	lis->length = i + 1;
 	while (khipu.ranks[high_tip.ok] != 0)
 	{
-		lis->ints[i--] = ft_lstget_int(int_list, high_tip.ok)->datum;
+		lis->ints[i--] = ft_ilstget(int_list, high_tip.ok)->datum;
 		high_tip.ok = khipu.knots[high_tip.ok];
 	}
-	lis->ints[i] = ft_lstget_int(int_list, high_tip.ok)->datum;
+	lis->ints[i] = ft_ilstget(int_list, high_tip.ok)->datum;
 	return (lis);
 }
 

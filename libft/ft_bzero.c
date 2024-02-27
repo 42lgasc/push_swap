@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_bzero.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lgasc <marvin@42.fr>                       +#+  +:+       +#+        */
+/*   By: lgasc <lgasc@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/01 16:44:15 by lgasc             #+#    #+#             */
-/*   Updated: 2024/02/07 13:45:19 by lgasc            ###   ########.fr       */
+/*   Updated: 2024/02/27 11:04:41 by lgasc            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,5 +20,5 @@ void	ft_bzero(void *start, size_t size)
 {
 	if (! start)
 		return ;
-	start = ft_memset(start, '\0', size);
+	ft_memset(start, '\0', size);
 }

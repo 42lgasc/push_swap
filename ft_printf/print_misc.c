@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   print_misc.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lgasc <marvin@42.fr>                       +#+  +:+       +#+        */
+/*   By: lgasc <lgasc@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/14 16:51:38 by lgasc             #+#    #+#             */
-/*   Updated: 2024/02/15 21:34:36 by lgasc            ###   ########.fr       */
+/*   Updated: 2024/02/27 12:07:18 by lgasc            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,11 +19,11 @@
 #include "ft_printf_utils.h"
 //#include "print_misc.h"
 
-void	ft_print_int_list(const t_int_list list)
+void	ft_print_int_list(const t_ilist list)
 {
-	const char			prefix[] = "(t_int_list)";
-	ssize_t				length;
-	const t_int_node	*node;
+	const char		prefix[] = "(t_ilist)";
+	ssize_t			length;
+	const t_inode	*node;
 
 	length = (ft_putstr_fd(prefix, 1), (signed)ft_strlen(prefix));
 	(ft_putchar_fd('[', 1), ++length);
@@ -46,18 +46,16 @@ void	ft_print_int_list(const t_int_list list)
 }
 
 __attribute__ ((nonnull))
-void	ft_print_array(const t_int_array array)
+void	ft_debug_array(const t_int_array array)
 {
 	const char	prefix[] = "(t_int_array)";
 	size_t		i;
 
-	ft_putstr_fd(prefix, 1);
-	ft_putchar_fd('[', 1);
+	ft_putstr_fd(prefix, 2);
+	ft_putchar_fd('[', 2);
 	i = 0;
 	while (i < array->length)
-	{
-		i += ft_print_integer(array->ints[i]) << 1 & 1;
-		ft_print_if(++i < array->length, ", ");
-	}
-	ft_putendl_fd("]", 1);
+		if (ft_putnbr_fd(array->ints[i], 2), ++i < array->length)
+			ft_putstr_fd(", ", 2);
+	ft_putendl_fd("]", 2);
 }

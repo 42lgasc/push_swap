@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_lstnew.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lgasc <marvin@42.fr>                       +#+  +:+       +#+        */
+/*   By: lgasc <lgasc@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/14 12:45:04 by lgasc             #+#    #+#             */
-/*   Updated: 2024/02/22 20:53:37 by lgasc            ###   ########.fr       */
+/*   Updated: 2024/02/27 11:26:09 by lgasc            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,9 +31,9 @@ t_node	*ft_lstnew(void *const datum)
 }
 
 __attribute__ ((warn_unused_result))
-t_int_node	*ft_lstnew_int(const int datum)
+t_inode	*ft_ilstnew(const int datum)
 {
-	t_int_node *const	node = malloc(sizeof * node);
+	t_inode *const	node = malloc(sizeof * node);
 
 	if (node == NULL)
 		return (NULL);

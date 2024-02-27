@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_lstclear.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lgasc <marvin@42.fr>                       +#+  +:+       +#+        */
+/*   By: lgasc <lgasc@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/15 12:28:07 by lgasc             #+#    #+#             */
-/*   Updated: 2024/02/22 20:57:44 by lgasc            ###   ########.fr       */
+/*   Updated: 2024/02/27 11:17:46 by lgasc            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,10 +34,10 @@ void	ft_lstclear(t_list *const list, void deleter(const void *const))
 	*list = NULL;
 }
 
-void	ft_lstclear_int(t_int_list *const list)
+void	ft_ilstclear(t_ilist *const list)
 {
-	t_int_node	*node;
-	t_int_node	*next_node;
+	t_inode	*node;
+	t_inode	*next_node;
 
 	node = *list;
 	while (node != NULL)

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_lstclone.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lgasc <marvin@42.fr>                       +#+  +:+       +#+        */
+/*   By: lgasc <lgasc@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/20 15:51:22 by lgasc             #+#    #+#             */
-/*   Updated: 2024/02/20 16:22:50 by lgasc            ###   ########.fr       */
+/*   Updated: 2024/02/27 11:28:00 by lgasc            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,16 +19,16 @@
 #endif
 
 __attribute__ ((warn_unused_result))
-t_int_list	ft_lstclone_int(t_int_list list)
+t_ilist	ft_ilstclone(t_ilist list)
 {
-	t_int_node	*node;
-	t_int_list	clone;
+	t_inode	*node;
+	t_ilist	clone;
 
 	node = list;
 	clone = NULL;
 	while (node != NULL)
 	{
-		ft_lstadd_back_int(&clone, ft_lstnew_int(node->datum));
+		ft_ilstadd_back(&clone, ft_ilstnew(node->datum));
 		node = node->next;
 	}
 	return (clone);

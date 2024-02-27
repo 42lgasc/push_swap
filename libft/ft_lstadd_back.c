@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_lstadd_back.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lgasc <marvin@42.fr>                       +#+  +:+       +#+        */
+/*   By: lgasc <lgasc@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/14 16:07:05 by lgasc             #+#    #+#             */
-/*   Updated: 2024/02/22 20:23:10 by lgasc            ###   ########.fr       */
+/*   Updated: 2024/02/27 11:17:20 by lgasc            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,12 +26,12 @@ void	ft_lstadd_back(t_list *const list, t_node *const node)
 		ft_lstlast(*list)->next = node;
 }
 
-void	ft_lstadd_back_int(t_int_list *const list, t_int_node *const node)
+void	ft_ilstadd_back(t_ilist *const list, t_inode *const node)
 {
 	if (*list == NULL)
 		*list = node;
 	else
-		ft_lstlast_int(*list)->next = node;
+		ft_ilstlast(*list)->next = node;
 }
 
 __attribute__ ((nonnull))

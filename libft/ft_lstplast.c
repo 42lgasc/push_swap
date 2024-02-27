@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_lstplast.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lgasc <marvin@42.fr>                       +#+  +:+       +#+        */
+/*   By: lgasc <lgasc@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/06 11:35:34 by lgasc             #+#    #+#             */
-/*   Updated: 2024/02/09 21:04:38 by lgasc            ###   ########.fr       */
+/*   Updated: 2024/02/27 11:26:01 by lgasc            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,9 +28,9 @@ t_node	*ft_lstplast(const t_list list)
 	return (node);
 }
 
-t_int_node	*ft_lstplast_int(const t_int_list list)
+t_inode	*ft_ilstplast(const t_ilist list)
 {
-	t_int_node	*node;
+	t_inode	*node;
 
 	node = list;
 	if (node->next == NULL)

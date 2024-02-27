@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_lstrot.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lgasc <marvin@42.fr>                       +#+  +:+       +#+        */
+/*   By: lgasc <lgasc@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/02 18:49:57 by lgasc             #+#    #+#             */
-/*   Updated: 2024/02/20 16:22:54 by lgasc            ###   ########.fr       */
+/*   Updated: 2024/02/27 11:16:13 by lgasc            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -64,10 +64,10 @@ void	ft_lstrrot(t_list *const list)
 	*list = last;
 }
 
-void	ft_lstrot_int(t_int_list *const list)
+void	ft_ilstrot(t_ilist *const list)
 {
-	t_int_node *const	top = *list;
-	t_int_node *const	last = ft_lstlast_int(*list);
+	t_inode *const	top = *list;
+	t_inode *const	last = ft_ilstlast(*list);
 
 	if (top == NULL)
 		return ;
@@ -77,10 +77,10 @@ void	ft_lstrot_int(t_int_list *const list)
 }
 
 ///Move the last node to the start of the `list`
-void	ft_lstrrot_int(t_int_list *const list)
+void	ft_ilstrrot(t_ilist *const list)
 {
-	t_int_node *const	last = ft_lstlast_int(*list);
-	t_int_node *const	pre_last = ft_lstplast_int(*list);
+	t_inode *const	last = ft_ilstlast(*list);
+	t_inode *const	pre_last = ft_ilstplast(*list);
 
 	if (pre_last == NULL)
 		return ;

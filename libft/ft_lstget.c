@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_lstget.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lgasc <marvin@42.fr>                       +#+  +:+       +#+        */
+/*   By: lgasc <lgasc@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/07 17:19:40 by lgasc             #+#    #+#             */
-/*   Updated: 2024/02/23 17:17:01 by lgasc            ###   ########.fr       */
+/*   Updated: 2024/02/27 11:28:58 by lgasc            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,10 +33,10 @@ t_node	*ft_lstget(const t_list list, const size_t offset)
 	return (node);
 }
 
-t_int_node	*ft_lstget_int(const t_int_list list, const size_t offset)
+t_inode	*ft_ilstget(const t_ilist list, const size_t offset)
 {
-	size_t		i;
-	t_int_node	*node;
+	size_t	i;
+	t_inode	*node;
 
 	node = list;
 	i = 0;

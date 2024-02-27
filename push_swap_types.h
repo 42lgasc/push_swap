@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   push_swap_types.h                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lgasc <marvin@42.fr>                       +#+  +:+       +#+        */
+/*   By: lgasc <lgasc@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/14 20:42:46 by lgasc             #+#    #+#             */
-/*   Updated: 2024/02/15 21:36:44 by lgasc            ###   ########.fr       */
+/*   Updated: 2024/02/27 10:23:13 by lgasc            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,10 +34,10 @@ struct __attribute__ ((designated_init)) s_stacks
 	//enum e_stack_mask	*masks;
 	//size_t				primary_top;
 	//int					*primary;
-	t_int_list	primary;
+	t_ilist	primary;
 	//size_t				secondary_top;
 	//int					*secondary;
-	t_int_list	secondary;
+	t_ilist	secondary;
 };
 
 #   define PUSH_SWAP_TYPES_H_ATTRIBUTES
@@ -51,10 +51,10 @@ struct s_stacks
 	//enum e_stack_mask	*masks;
 	//size_t				primary_top;
 	//int					*primary;
-	t_int_list	primary;
+	t_ilist	primary;
 	//size_t				secondary_top;
 	//int					*secondary;
-	t_int_list	secondary;
+	t_ilist	secondary;
 };
 # endif
 

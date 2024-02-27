@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_strlcpy.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lgasc <marvin@42.fr>                       +#+  +:+       +#+        */
+/*   By: lgasc <lgasc@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/02 13:24:41 by lgasc             #+#    #+#             */
-/*   Updated: 2023/09/29 14:11:26 by lgasc            ###   ########.fr       */
+/*   Updated: 2024/02/26 19:43:03 by lgasc            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,10 +23,10 @@ size_t	ft_strlcpy(char *destination, const char *const source, size_t size)
 	if ((! destination) || (! source))
 		return (0);
 	if (ft_strlen(source) + 1 < size)
-		destination = ft_memmove(destination, source, ft_strlen(source) + 1);
+		ft_memmove(destination, source, ft_strlen(source) + 1);
 	else if (size > 0)
 	{
-		destination = ft_memmove(destination, source, size - 1);
+		ft_memmove(destination, source, size - 1);
 		destination[size - 1] = '\0';
 	}
 	return (ft_strlen(source));

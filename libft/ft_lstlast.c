@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_lstlast.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lgasc <marvin@42.fr>                       +#+  +:+       +#+        */
+/*   By: lgasc <lgasc@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/14 15:52:21 by lgasc             #+#    #+#             */
-/*   Updated: 2024/02/22 20:35:21 by lgasc            ###   ########.fr       */
+/*   Updated: 2024/02/27 11:17:28 by lgasc            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,9 +27,9 @@ t_node	*ft_lstlast(const t_list list)
 	return (node);
 }
 
-t_int_list	ft_lstlast_int(const t_int_list list)
+t_ilist	ft_ilstlast(const t_ilist list)
 {
-	t_int_node	*node;
+	t_inode	*node;
 
 	if (list == NULL)
 		return (NULL);

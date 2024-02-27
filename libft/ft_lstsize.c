@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_lstsize.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lgasc <marvin@42.fr>                       +#+  +:+       +#+        */
+/*   By: lgasc <lgasc@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/14 14:28:09 by lgasc             #+#    #+#             */
-/*   Updated: 2024/02/12 15:53:18 by lgasc            ###   ########.fr       */
+/*   Updated: 2024/02/27 11:29:23 by lgasc            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,10 +32,10 @@ size_t	ft_lstsize(const t_list list)
 	return (size);
 }
 
-size_t	ft_lstsize_int(const t_int_list list)
+size_t	ft_ilstsize(const t_ilist list)
 {
-	size_t		size;
-	t_int_node	*node;
+	size_t	size;
+	t_inode	*node;
 
 	node = list;
 	size = 0;
