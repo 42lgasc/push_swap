@@ -1,39 +1,29 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_lstclone.c                                      :+:      :+:    :+:   */
+/*   minlst.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: lgasc <lgasc@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/02/20 15:51:22 by lgasc             #+#    #+#             */
-/*   Updated: 2024/02/28 16:31:50 by lgasc            ###   ########.fr       */
+/*   Created: 2024/02/27 21:15:21 by lgasc             #+#    #+#             */
+/*   Updated: 2024/02/27 22:04:55 by lgasc            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <stddef.h>
-
 #include "bonus.h"
 
-#ifdef TEST
-# include "libft.h"
-#endif
-
-__attribute__ ((warn_unused_result))
-t_ilist	ft_ilstclone(t_ilist list)
+///TODO: Remove calls to `ft_zlstget`
+__attribute__ ((nonnull)) __attribute__ ((warn_unused_result))
+size_t	ft_minzlst_offset(const t_zlist list)
 {
-	t_inode	*node;
-	t_ilist	clone;
-	t_inode	*copy;
+	size_t	i;
+	size_t	min;
 
-	node = list;
-	clone = NULL;
-	while (node != NULL)
-	{
-		copy = ft_ilstnew(node->datum);
-		if (copy == NULL)
-			return (ft_ilstclear(&clone), NULL);
-		ft_ilstadd_back(&clone, copy);
-		node = node->next;
-	}
-	return (clone);
+	i = 1;
+	min = 0;
+	while (i < ft_zlstsize(list))
+		if (ft_zlstget(list, i++)->inner < ft_zlstget(list, min)->inner)
+			min = i - 1;
+	return (min);
 }

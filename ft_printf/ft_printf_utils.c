@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_printf_utils.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lgasc <marvin@42.fr>                       +#+  +:+       +#+        */
+/*   By: lgasc <lgasc@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/10 16:41:57 by lgasc             #+#    #+#             */
-/*   Updated: 2024/02/14 18:01:49 by lgasc            ###   ########.fr       */
+/*   Updated: 2024/02/28 18:38:39 by lgasc            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,7 +35,7 @@ ssize_t	ft_print_hexadecimal(
 			const uintptr_t number, const unsigned char lowercase)
 {
 	uintptr_t	power;
-	const char	hexadigit[2][16] = {"0123456789ABCDEF", "0123456789abcdef"};
+	const char	hexadigit[][16] = {"0123456789ABCDEF", "0123456789abcdef"};
 	size_t		remaining_length;
 	ssize_t		length;
 

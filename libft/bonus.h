@@ -6,7 +6,7 @@
 /*   By: lgasc <lgasc@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/08 12:47:42 by lgasc             #+#    #+#             */
-/*   Updated: 2024/02/27 10:29:16 by lgasc            ###   ########.fr       */
+/*   Updated: 2024/02/27 21:58:36 by lgasc            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,9 +18,9 @@
 // ///
 // ~~ ~ -  BONUS
 
-t_node	*ft_lstnew(void *datum)__attribute__ ((warn_unused_result));
+t_node	*ft_lstnew(void *datum);
 void	ft_lstadd_front(t_list *list, t_node *node) __attribute__ ((nonnull));
-size_t	ft_lstsize(t_list list) __attribute__ ((warn_unused_result));
+size_t	ft_lstsize(t_list list);
 t_list	ft_lstlast(t_list list) __attribute__ ((warn_unused_result));
 void	ft_lstadd_back(t_list *list, t_node *node) __attribute__ ((nonnull));
 void	ft_lstdelone(t_node **node, void (*deleter)(const void *datum))
@@ -40,8 +40,7 @@ void	ft_lstrot(t_list *list);
 void	ft_lstrrot(t_list *list);
 t_node	*ft_lstplast(t_list list)
 		__attribute__ ((warn_unused_result)) __attribute__ ((nonnull));
-t_node	*ft_lstget(t_list list, size_t offset)
-		__attribute__ ((warn_unused_result));
+t_node	*ft_lstget(t_list list, size_t offset);
 
 //\///Not defined yet, I am reserving this name for later kernel-related use.
 //typedef void		t_inode;
@@ -50,7 +49,8 @@ t_node	*ft_lstget(t_list list, size_t offset)
 t_inode	*ft_ilstnew(int datum) __attribute__ ((warn_unused_result));
 t_znode	*ft_zlstnew(size_t inner);
 t_zlist	ft_zlstlast(t_zlist list);
-size_t	ft_ilstsize(t_ilist list)__attribute__ ((warn_unused_result));
+size_t	ft_ilstsize(t_ilist list);
+size_t	ft_zlstsize(t_zlist list);
 t_ilist	ft_ilstlast(t_ilist list)__attribute__ ((warn_unused_result));
 void	ft_ilstadd_back(t_ilist *list, t_inode *node)
 		__attribute__ ((nonnull));
@@ -61,9 +61,9 @@ void	ft_ilstrot(t_ilist *list);
 void	ft_ilstrrot(t_ilist *list);
 t_inode	*ft_ilstplast(t_ilist list)
 		__attribute__ ((warn_unused_result)) __attribute__ ((nonnull));
-t_inode	*ft_ilstget(t_ilist list, size_t offset)
-		__attribute__ ((warn_unused_result));
+t_inode	*ft_ilstget(t_ilist list, size_t offset);
 t_znode	*ft_zlstget(t_zlist, size_t offset);
 t_ilist	ft_ilstclone(t_ilist list);
 char	ft_ilstswap(t_inode **a, t_inode **b);
+size_t	ft_minzlst_offset(const t_zlist list);
 #endif

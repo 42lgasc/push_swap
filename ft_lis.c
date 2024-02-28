@@ -6,15 +6,15 @@
 /*   By: lgasc <lgasc@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/20 13:58:04 by lgasc             #+#    #+#             */
-/*   Updated: 2024/02/27 11:32:04 by lgasc            ###   ########.fr       */
+/*   Updated: 2024/02/28 18:25:42 by lgasc            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_lis.h"
 
-//#ifdef TEST
-//# include "ft_printf/ft_printf.h"
-//#endif
+#ifdef TEST
+# include "ft_printf/ft_printf.h"
+#endif
 
 static void		ft_loop(t_khipu *khipu, t_ilist int_list)
 				__attribute__ ((nonnull));
@@ -26,6 +26,7 @@ static t_iarr	ft_hydrate_lis(t_ilist int_list, t_khipu khipu)
 //static void		ft_print_khipu(const t_khipu khipu);
 #endif
 
+__attribute__ ((nonnull)) __attribute__ ((warn_unused_result))
 ///Longuest Increasing Subsequence
 		//= malloc(super_length * sizeof * end_predecessors);
 		//|| end_predecessors == NULL)
@@ -35,8 +36,6 @@ t_int_array	ft_lis(const t_ilist int_list)
 	size_t		i;
 	t_int_array	lis;
 
-	if (int_list == NULL)
-		return (NULL);
 	khipu.amount = ft_ilstsize(int_list);
 	khipu.ranks
 		= malloc(khipu.amount * sizeof * khipu.ranks);
@@ -53,9 +52,10 @@ t_int_array	ft_lis(const t_ilist int_list)
 	return (free(khipu.ranks), free(khipu.knots), lis);
 }
 
-// Note: It could be done without cloning, by using some pointer shuffling.
-// 	It could be hard, or it could be easy, or it could be foolish,
-// 		anyway I am not trying today. ~~lgasc 2024-02-16T19:46
+__attribute__ ((nonnull)) __attribute__ ((warn_unused_result))
+///>#### NOTE: We could use no cloning, by using some pointer shuffling instead.
+///>	It could be _hard_, _easy_, or _foolish_, anyway I am not trying today.
+///#### ~~_`lgasc` 2024-02-16T19:46_
 ///TODO
 t_int_array	ft_lis_circular(const t_ilist list)
 {
@@ -69,6 +69,8 @@ t_int_array	ft_lis_circular(const t_ilist list)
 	while (node != NULL)
 	{
 		clone = ft_ilstclone(list);
+		if (clone == NULL)
+			return (free(best), NULL);
 		while (clone->datum != node->datum)
 			ft_ilstrot(&clone);
 		lis = ft_lis(clone);

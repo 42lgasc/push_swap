@@ -6,7 +6,7 @@
 /*   By: lgasc <lgasc@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/31 18:25:10 by lgasc             #+#    #+#             */
-/*   Updated: 2024/02/27 11:13:58 by lgasc            ###   ########.fr       */
+/*   Updated: 2024/02/28 18:31:58 by lgasc            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,9 +19,8 @@
 //#include "stacks.h"
 #include "push_swap_types.h"
 
-//#ifdef TEST
-//# include "ft_printf/ft_printf.h"
-//#endif
+#ifndef TEST
+# include "ft_printf/ft_printf.h"
 
 void	ft_print_stacks(const struct s_stacks stacks)
 {
@@ -47,15 +46,22 @@ void	ft_print_stacks(const struct s_stacks stacks)
 	}
 	ft_putendl_fd("] }", 2);
 }
+#else
 
-t_int_option	ft_primary_top(const struct s_stacks stacks)
+void	ft_print_stacks(const struct s_stacks stacks)
+{
+	(void) stacks;
+}
+#endif
+
+/*t_int_option	ft_primary_top(const struct s_stacks stacks)
 {
 	if (stacks.primary == NULL)
 		return ((t_int_option){.type = None});
 	return ((t_int_option){.type = Some, .value = stacks.primary->datum});
 }
 
-/*t_int_option	ft_primary_next(const struct s_stacks stacks)
+//\*t_int_option	ft_primary_next(const struct s_stacks stacks)
 {
 	size_t	i;
 
@@ -70,7 +76,7 @@ t_int_option	ft_primary_top(const struct s_stacks stacks)
 	return ((struct s_int_option){.type = None});
 	(void) stacks;
 	exit(TODO + 3);
-}*/
+}*\/
 
 t_int_option	ft_primary_bottom(const struct s_stacks stacks)
 {
@@ -93,4 +99,4 @@ t_int_option	ft_secondary_bottom(const struct s_stacks stacks)
 		return ((t_int_option){.type = None});
 	return ((t_int_option)
 		{.type = Some, .value = ft_ilstplast(stacks.secondary)->datum});
-}
+}*/

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_lstmap.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lgasc <marvin@42.fr>                       +#+  +:+       +#+        */
+/*   By: lgasc <lgasc@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/15 14:59:30 by lgasc             #+#    #+#             */
-/*   Updated: 2024/02/09 18:51:38 by lgasc            ###   ########.fr       */
+/*   Updated: 2024/02/28 16:47:12 by lgasc            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,13 +58,9 @@ static t_list	map_skeleton(const size_t size)
 	while (i++ < size)
 	{
 		node = ft_lstnew(NULL);
-		if (node)
-			ft_lstadd_back(&skeleton, node);
-		else
-		{
-			ft_lstclear(&skeleton, noop);
-			return (NULL);
-		}
+		if (node == NULL)
+			return (ft_lstclear(&skeleton, noop), NULL);
+		ft_lstadd_back(&skeleton, node);
 	}
 	return (skeleton);
 }

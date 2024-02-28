@@ -6,7 +6,7 @@
 /*   By: lgasc <lgasc@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/20 16:15:17 by lgasc             #+#    #+#             */
-/*   Updated: 2024/02/27 10:23:13 by lgasc            ###   ########.fr       */
+/*   Updated: 2024/02/28 16:44:17 by lgasc            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,9 +23,7 @@
 #  include "ft_printf/ft_printf.h"
 # endif
 
-t_int_array		ft_lis_circular(t_ilist list)
-				__attribute__ ((nonnull))
-				__attribute__ ((warn_unused_result));
+t_int_array		ft_lis_circular(t_ilist list);
 //t_int_array		ft_lis(t_ilist list)
 //				__attribute__ ((nonnull))
 //				__attribute__ ((warn_unused_result));

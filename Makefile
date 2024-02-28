@@ -6,7 +6,7 @@
 #    By: lgasc <lgasc@student.42.fr>                +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/02/09 17:30:49 by lgasc             #+#    #+#              #
-#    Updated: 2024/02/14 20:36:12 by lgasc            ###   ########.fr        #
+#    Updated: 2024/02/28 18:15:29 by lgasc            ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -27,8 +27,8 @@ GCC_FLAGS += $(CLANG_FLAGS) -Warith-conversion
 LIBFT = libft/libft.a
 FT_PRINTF = ft_printf/libftprintf.a
 
-SOURCES = $(NAME).c stacks.c ft_swap_push.c ft_raise.c ft_refurb.c \
-	ft_gnome_sort.c ft_lis.c
+SOURCES = $(NAME).c stacks.c parsing.c aim.c offload.c \
+	ft_swap_push.c ft_raise.c ft_refurb.c ft_gnome_sort.c ft_lis.c
 
 #OBJECTS = $(SOURCES:.c=.o)
 
