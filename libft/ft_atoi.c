@@ -6,7 +6,7 @@
 /*   By: lgasc <lgasc@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/04 16:28:25 by lgasc             #+#    #+#             */
-/*   Updated: 2024/02/14 17:49:33 by lgasc            ###   ########.fr       */
+/*   Updated: 2024/02/28 19:38:42 by lgasc            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -80,7 +80,7 @@ t_atoi_result	ft_try_atoi(const char string[const])
 		if (! ft_isdigit(string[i]))
 			return ((t_atoi_result){.code = Atoi_Ok, .ok = integer});
 		if ((sign > 0 && integer > (INT_MAX - string[i] + '0') / 10)
-			|| (sign < 0 && integer > (INT_MIN + string[i] - '0') / 10))
+			|| (sign < 0 && integer < (INT_MIN + string[i] - '0') / 10))
 			return ((t_atoi_result){.code = BeyondLimits});
 	}
 }
